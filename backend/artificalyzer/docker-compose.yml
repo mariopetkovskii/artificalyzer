@@ -1,0 +1,20 @@
+version: "3"
+services:
+  artificalyzer-service:
+    image: "postgres"
+    container_name: "artificalyzer-db"
+    environment:
+      - POSTGRES_USER=db
+      - POSTGRES_PASSWORD=db123
+      - POSTGRES_DB=artificalyzer
+    ports:
+      - "5432:5432"
+  pgadmin-service:
+    image: "dpage/pgadmin4"
+    container_name: "my-pgadmin"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=artificalyzer@artificalyzer.com
+      - PGADMIN_DEFAULT_PASSWORD=artificalyzer
+    ports:
+      - "82:80"
+
