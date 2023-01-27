@@ -1,0 +1,15 @@
+.cascading-left {
+    margin-left: 50px;
+}
+
+@media (max-width: 991.98px) {
+    .cascading-left {
+        margin-left: 0;
+    }
+}
+
+.style-cdd
+{
+    background: hsla(0, 0%, 100%, 0.55);
+    backdrop-filter: blur(30px);
+}
