@@ -7,5 +7,5 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.Optional;
 
 public interface EditsService {
-    Optional<Edits> addEditsModel(EditsHelper editsHelper) throws JsonProcessingException;
+    Optional<Edits> addEditsModel(EditsHelper editsHelper, String authHeader) throws JsonProcessingException;
 }

@@ -17,8 +17,9 @@ public class ImagesController {
     private final ImagesService imagesService;
 
     @PostMapping("/generate")
-    public ResponseEntity<Images> generateImage(@RequestBody ImagesHelper imagesHelper) throws JsonProcessingException {
-        return this.imagesService.addImagesModel(imagesHelper)
+    public ResponseEntity<Images> generateImage(@RequestBody ImagesHelper imagesHelper,
+                                                @RequestHeader("Authorization") String authorizationHeader) throws JsonProcessingException {
+        return this.imagesService.addImagesModel(imagesHelper, authorizationHeader)
                 .map(images -> ResponseEntity.ok().body(images))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }

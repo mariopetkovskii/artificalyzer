@@ -16,8 +16,9 @@ public class EditsController {
     private EditsService editsService;
 
     @PostMapping("/post")
-    public ResponseEntity<Edits> edits(@RequestBody EditsHelper editsHelper) throws JsonProcessingException {
-        return this.editsService.addEditsModel(editsHelper)
+    public ResponseEntity<Edits> edits(@RequestBody EditsHelper editsHelper,
+                                       @RequestHeader("Authorization") String authorizationHeader) throws JsonProcessingException {
+        return this.editsService.addEditsModel(editsHelper, authorizationHeader)
                 .map(edits -> ResponseEntity.ok().body(edits))
                 .orElseGet(() -> ResponseEntity.ok().build());
     }

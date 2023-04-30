@@ -7,5 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.Optional;
 
 public interface ModerationService {
-    Optional<Moderation> addModeration(ModerationHelper moderationHelper) throws JsonProcessingException;
+    Optional<Moderation> addModeration(ModerationHelper moderationHelper,
+                                       String authHeader) throws JsonProcessingException;
 }
