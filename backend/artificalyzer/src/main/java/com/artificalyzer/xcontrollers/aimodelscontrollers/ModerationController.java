@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class ModerationController {
     private ModerationService moderationService;
     @PostMapping
-    private ResponseEntity<Moderation> addModeration(@RequestBody ModerationHelper moderationHelper) throws JsonProcessingException {
-        return this.moderationService.addModeration(moderationHelper)
+    private ResponseEntity<Moderation> addModeration(@RequestBody ModerationHelper moderationHelper,
+                                                     @RequestHeader("Authorization") String authorizationHeader) throws JsonProcessingException {
+        return this.moderationService.addModeration(moderationHelper, authorizationHeader)
                 .map(moderation -> ResponseEntity.ok().body(moderation))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
