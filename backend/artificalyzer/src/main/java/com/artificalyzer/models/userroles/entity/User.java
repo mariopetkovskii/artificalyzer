@@ -46,7 +46,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.isEnabled = false;
+        this.isEnabled = true;
         this.dateCreated = OffsetDateTime.now();
         this.dateModified = OffsetDateTime.now();
         this.roleList = new ArrayList<>();
