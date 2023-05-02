@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { ApiService } from 'src/app/api.service';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {ApiService} from 'src/app/api.service';
+import {map} from "rxjs";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-login',
@@ -12,14 +14,19 @@ export class LoginComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router,
+              private location: Location) {
+  }
 
   handleSubmit() {
     this.apiService.logIn(this.email, this.password)
-    .subscribe((response: any) => {
-      localStorage.setItem('AUTH_TOKEN', response);
-      console.log(response);
-    });
-}
+      .subscribe((response: any) => {
+        localStorage.setItem('AUTH_TOKEN', response.token);
+        location.href = "/"
+      },
+        (error: any) => {
+        this.errorMessage = "Failed to login."
+        });
+  }
 
 }

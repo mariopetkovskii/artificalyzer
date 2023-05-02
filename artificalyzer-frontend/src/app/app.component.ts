@@ -1,24 +1,24 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'artificalyzer-frontend';
-  isUserLoggedIn: boolean = false;;
+  isUserLoggedIn: boolean = false;
 
   ngOnInit(){
     this.isLoggedIn();
   }
 
   isLoggedIn(){
-    if(localStorage.getItem("AUTH_TOKEN")){
-      this.isUserLoggedIn = true;
-    }else{
-      this.isUserLoggedIn = false;
-    }
+    this.isUserLoggedIn = !!localStorage.getItem("AUTH_TOKEN");
+  }
+
+  logOut(){
+    localStorage.removeItem("AUTH_TOKEN")
   }
 }
 
