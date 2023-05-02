@@ -15,12 +15,12 @@ export class ApiService {
  logIn(email: string, password: string){
      const httpOptions = {
          headers: new HttpHeaders({
-           'Content-Type': 'application/json',
+           'Content-Type': 'text/plain',
            'Authorization': 'Basic ' + btoa(email + ':' + password)
         })
     };
 
-    return this.httpClient.post(this.endpointUrl + "/user/login", {}, httpOptions).pipe(map((response: any) => response.text()));
+    return this.httpClient.post(this.endpointUrl + "/user/login", {}, httpOptions)
  }
 
  registerIn(firstName: string, lastName: string, email: string, password: string, confirmPassword: string ){
