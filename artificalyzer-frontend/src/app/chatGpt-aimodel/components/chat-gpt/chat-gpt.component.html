@@ -1,0 +1,28 @@
+<br>
+<br>
+<div class="d-flex justify-content-center">
+  <div class="image-container">
+    <img
+        src="https://i.imgur.com/0d68qV6.jpg"
+        class="w-100 rounded-4 shadow-4" alt="" />
+    <div class="chat-container" *ngIf="botMessage">
+      <ul class="chat" *ngFor="let chat of chats;">
+        <li class="message left">
+          <img class="logo" src="https://img.freepik.com/premium-vector/businessman-avatar-cartoon-character-profile_18591-50581.jpg" alt="">
+          <p>{{ chat.chatInput }}</p>
+        </li>
+        <li class="message right">
+          <img class="logo" src="https://static.vecteezy.com/system/resources/thumbnails/010/054/157/small/chat-bot-robot-avatar-in-circle-round-shape-isolated-on-white-background-stock-illustration-ai-technology-futuristic-helper-communication-conversation-concept-in-flat-style-vector.jpg" alt="">
+          <p><pre [innerHTML]="getSafeHtml(chat.chatOutput)"></pre>
+        </li>
+      </ul>
+    </div>
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="userInput" placeholder="Type a message">
+      <div class="input-group-append">
+        <button type="button" class="btn btn-primary" (click)="sendRequest()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+

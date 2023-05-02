@@ -54,7 +54,7 @@ public class AiModelsApiCalls {
 
         String url = "https://api.openai.com/v1/images/generations";
         HttpHeaders httpHeaders = new org.springframework.http.HttpHeaders();
-        httpHeaders.setBearerAuth("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");
+        httpHeaders.setBearerAuth("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");
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         Map<String, Serializable> data = new HashMap<>();
         data.put("prompt", prompt);

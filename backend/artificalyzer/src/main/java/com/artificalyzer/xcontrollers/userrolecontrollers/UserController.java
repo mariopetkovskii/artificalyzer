@@ -18,7 +18,7 @@ import java.time.OffsetDateTime;
 
 @RestController
 @RequestMapping("/rest/user")
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("http://localhost:4200/")
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
