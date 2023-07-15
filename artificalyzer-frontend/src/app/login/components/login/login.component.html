@@ -25,7 +25,9 @@
                 Log in
               </button>
               <div>
-                <!-- <a routerLink="/register" class="link-primary">No account? Register here!</a> -->
+                 <a routerLink="/register" class="link-primary">No account? Register here!</a>
+                <br>
+                 <a class="link-primary" (click)="sendRecoveryAccountPassword()">Forgot Password?</a>
               </div>
               <div>
                 {{ errorMessage }}

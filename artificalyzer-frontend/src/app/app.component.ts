@@ -4,6 +4,7 @@ import {BreakpointObserver} from "@angular/cdk/layout";
 import {NavigationEnd, Router} from "@angular/router";
 import {delay, filter} from "rxjs";
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import {ApiService} from "./api.service";
 @UntilDestroy()
 @Component({
   selector: 'app-root',
@@ -13,11 +14,12 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 export class AppComponent implements OnInit{
   title = 'artificalyzer-frontend';
   isUserLoggedIn: boolean = false;
+  user: any;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
-  constructor(private observer: BreakpointObserver, private router: Router) {}
+  constructor(private observer: BreakpointObserver, private router: Router, private apiService: ApiService) {}
 
   ngAfterViewInit() {
     this.observer
@@ -47,6 +49,14 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.isLoggedIn();
+    this.getUserDetails();
+  }
+
+  getUserDetails(){
+    this.apiService.getUserDetails()
+      .subscribe((data) => {
+        this.user = data;
+      })
   }
 
   isLoggedIn(){
@@ -56,10 +66,15 @@ export class AppComponent implements OnInit{
   logOut(){
     localStorage.removeItem("AUTH_TOKEN")
     this.router.navigate(['/login'])
+    window.location.reload();
   }
 
   navigateToChat(){
     this.router.navigate(['/chat'])
+  }
+
+  navigateToSentenceAnalysis(){
+    this.router.navigate(['/sentence/statements'])
   }
 
   navigateToLogin(){

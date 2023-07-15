@@ -1,0 +1,18 @@
+<section class="text-center text-lg-start">
+  <div class="d-flex justify-content-center mt-5">
+    <div class="w-50">
+      <input type="text" id="sentence" class="form-control"
+             name="sentence" [(ngModel)]="sentence"/>
+      <label class="form-label" for="sentence">Sentence</label>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary btn-block mb-4"
+              (click)="handleSubmit()">
+        Analyze
+      </button>
+    </div>
+    <div>
+      {{ response.polarity }}
+    </div>
+  </div>
+</section>

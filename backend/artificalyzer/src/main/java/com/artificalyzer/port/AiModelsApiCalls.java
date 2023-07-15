@@ -20,7 +20,7 @@ public class AiModelsApiCalls {
     public static String outputEditsDaVinci(String input, String instruction) throws JsonProcessingException {
         String url = "https://api.openai.com/v1/edits";
         HttpHeaders httpHeaders = new org.springframework.http.HttpHeaders();
-        httpHeaders.setBearerAuth("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");
+        httpHeaders.setBearerAuth("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");
         httpHeaders.setContentType(MediaType.APPLICATION_JSON);
         Map<String, String> data = new HashMap<>();
         data.put("model", "text-davinci-edit-001");

@@ -29,4 +29,8 @@ export class LoginComponent {
         });
   }
 
+  sendRecoveryAccountPassword(){
+    this.apiService.sendRecoveryAccountPassword(this.email).subscribe()
+  }
+
 }

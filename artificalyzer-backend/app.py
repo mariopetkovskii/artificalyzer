@@ -1,5 +1,3 @@
-from flask import Flask, request
-from confluent_kafka import Consumer, Producer, KafkaError
 from flask import Flask, request, jsonify
 from textblob import TextBlob
 import json

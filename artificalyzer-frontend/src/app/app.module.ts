@@ -15,6 +15,12 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
+import { SentenceStatementsComponent } from './sentence-statements/sentence-statements.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { RecoverAccountComponent } from './recover-account/recover-account.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +28,12 @@ import {MatButtonModule} from "@angular/material/button";
     ChatGptComponent,
     LoginComponent,
     RegisterComponent,
+    SentenceStatementsComponent,
+    HomePageComponent,
+    ProfilePageComponent,
+    AboutPageComponent,
+    HelpPageComponent,
+    RecoverAccountComponent,
   ],
   imports: [
     BrowserModule,

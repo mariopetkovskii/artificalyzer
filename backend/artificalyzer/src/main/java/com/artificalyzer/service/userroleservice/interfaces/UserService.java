@@ -2,6 +2,7 @@ package com.artificalyzer.service.userroleservice.interfaces;
 
 import com.artificalyzer.models.userroles.entity.User;
 import com.artificalyzer.models.userroles.helpers.*;
+import com.artificalyzer.records.UserResponseDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,9 +30,11 @@ public interface UserService {
 
     Optional<User> recoveryAccountChangePassword(AccountRecoveryChangePasswordHelper accountRecoveryChangePasswordHelper);
 
-    Optional<Boolean> recoverAccount(AccountRecoveryHelper accountRecoveryHelper);
+    void recoverAccount(AccountRecoveryHelper accountRecoveryHelper);
 
     void deleteUserByEmail(String email);
 
     Optional<User> editAccount(UserHelper userHelper);
+
+    UserResponseDto getUserDetails();
 }

@@ -1,16 +1,20 @@
 package com.artificalyzer.service.userroleservice.implementation;
 
+import com.artificalyzer.mailtemplates.MailService;
+import com.artificalyzer.mappers.UserResponseDtoMapper;
 import com.artificalyzer.models.userroles.entity.Role;
 import com.artificalyzer.models.userroles.entity.Token;
 import com.artificalyzer.models.userroles.entity.User;
 import com.artificalyzer.models.userroles.entity.UserRole;
 import com.artificalyzer.models.userroles.exceptions.*;
 import com.artificalyzer.models.userroles.helpers.*;
+import com.artificalyzer.records.UserResponseDto;
 import com.artificalyzer.repository.userrolerepository.RoleRepository;
 import com.artificalyzer.repository.userrolerepository.UserRepository;
 import com.artificalyzer.repository.userrolerepository.UserRoleRepository;
 import com.artificalyzer.service.userroleservice.interfaces.TokenService;
 import com.artificalyzer.service.userroleservice.interfaces.UserService;
+import com.artificalyzer.utils.Utils;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -38,6 +42,7 @@ public class UserServiceImplementation implements UserService {
     private final TokenService tokenService;
 
     private final UserRoleRepository userRoleRepository;
+    private final UserResponseDtoMapper userResponseDtoMapper;
 
 
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
@@ -107,13 +112,12 @@ public class UserServiceImplementation implements UserService {
         token.setUser(newUser);
         tokenService.create(token);
 
-        sendMailConfirmation(userHelper.getEmail(), tokenValue);
-
+        MailService.emailConfirmation(userHelper.getEmail(), tokenValue);
         return Optional.of(newUser);
     }
 
     @Override
-    public Optional<Boolean> recoverAccount(AccountRecoveryHelper accountRecoveryHelper){
+    public void recoverAccount(AccountRecoveryHelper accountRecoveryHelper){
         User user = this.userRepository.findByEmail(accountRecoveryHelper.getEmail());
         Token token = new Token();
         String tokenValue = UUID.randomUUID().toString();
@@ -121,7 +125,7 @@ public class UserServiceImplementation implements UserService {
         token.setExpirationDate(OffsetDateTime.now().plusMinutes(3));
         token.setUser(user);
         tokenService.create(token);
-        return Optional.of(sendMailRecoveryAccount(accountRecoveryHelper.getEmail(), tokenValue));
+        MailService.sendMailRecoveryAccount(accountRecoveryHelper.getEmail(), tokenValue);
     }
 
     @Override
@@ -132,12 +136,18 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public Optional<User> editAccount(UserHelper userHelper) {
-        User user = this.userRepository.findByEmail(userHelper.getEmail());
+        User user = this.userRepository.findByEmail(Utils.getLoggedUserEmail());
         user.setFirstName(userHelper.getFirstName());
         user.setLastName(userHelper.getLastName());
         user.setEmail(userHelper.getEmail());
         this.userRepository.save(user);
         return Optional.of(user);
+    }
+
+    @Override
+    public UserResponseDto getUserDetails() {
+        User user = this.findByEmail(Utils.getLoggedUserEmail());
+        return userResponseDtoMapper.apply(user);
     }
 
 
@@ -189,49 +199,29 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public Optional<User> recoveryAccountChangePassword(AccountRecoveryChangePasswordHelper accountRecoveryChangePasswordHelper) {
-        User user = this.userRepository.findByEmail(accountRecoveryChangePasswordHelper.getEmail());
+        Token token = this.tokenService.findByToken(accountRecoveryChangePasswordHelper.getToken());
+        User user = token.getUser();
         if(!accountRecoveryChangePasswordHelper.getNewPassword().equals(accountRecoveryChangePasswordHelper.getConfirmNewPassword())){
             throw new PasswordsDoNotMatchException();
-        }
-        Token token = this.tokenService.findByToken(accountRecoveryChangePasswordHelper.getToken());
-        if(!token.getUser().equals(user))
-        {
-            throw new TokenDoesNotMatchUserException();
         }
         user.setPassword(passwordEncoder.encode(accountRecoveryChangePasswordHelper.getNewPassword()));
         return Optional.of(this.userRepository.save(user));
     }
 
 
-    private void sendMailConfirmation(String email, String token){
-        try {
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-            mailMessage.setTo(email);
-            mailMessage.setSubject("Confirmation email!");
-            mailMessage.setFrom("artificalyzermk@outlook.com");
-            mailMessage.setText("Click here to confirm your account : "
-                    +"http://localhost:8080/rest/user/confirm-account?token="+token);
-
-            javaMailSender.send(mailMessage);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private Boolean sendMailRecoveryAccount(String email, String token){
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-
-        mailMessage.setTo(email);
-        mailMessage.setSubject("Account Recovery!");
-        mailMessage.setFrom("artificalyzermk@outlook.com");
-        mailMessage.setText("Click here to change your password : "
-                +"http://localhost:8080/rest/user/recovery-password?token="+token);
-
-        javaMailSender.send(mailMessage);
-
-        return true;
-    }
+//    private Boolean sendMailRecoveryAccount(String email, String token){
+//        SimpleMailMessage mailMessage = new SimpleMailMessage();
+//
+//        mailMessage.setTo(email);
+//        mailMessage.setSubject("Account Recovery!");
+//        mailMessage.setFrom("artificalyzermk@outlook.com");
+//        mailMessage.setText("Click here to change your password : "
+//                +"http://localhost:8081/rest/user/recovery-password?token="+token);
+//
+//        javaMailSender.send(mailMessage);
+//
+//        return true;
+//    }
 
 
 }

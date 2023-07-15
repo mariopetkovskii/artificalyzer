@@ -6,6 +6,7 @@ import com.artificalyzer.models.userroles.helpers.AccountRecoveryChangePasswordH
 import com.artificalyzer.models.userroles.helpers.AccountRecoveryHelper;
 import com.artificalyzer.models.userroles.helpers.ChangePasswordHelper;
 import com.artificalyzer.models.userroles.helpers.UserHelper;
+import com.artificalyzer.records.UserResponseDto;
 import com.artificalyzer.service.userroleservice.interfaces.TokenService;
 import com.artificalyzer.service.userroleservice.interfaces.UserService;
 import lombok.AllArgsConstructor;
@@ -38,7 +39,7 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
-    @PutMapping("/edit-account")
+    @PostMapping("/edit-account")
     public ResponseEntity<String> editAccount(@RequestBody UserHelper userHelper){
         return this.userService.editAccount(userHelper)
                 .map(user -> ResponseEntity.ok().body("Account is changed successfully."))
@@ -53,18 +54,18 @@ public class UserController {
             if(tokenInDB.getExpirationDate().isBefore(OffsetDateTime.now())){
                 this.tokenService.deleteByToken(token);
                 this.userService.deleteUserByEmail(tokenInDB.getUser().getEmail());
-                response.sendRedirect("http://localhost:3000/login/tokenexpired?m=tokenexpired");
+                response.sendRedirect("http://localhost:4200/login/tokenexpired?m=tokenexpired");
             }
             else {
                 User user = tokenInDB.getUser();
                 if(user.getIsEnabled()){
-                    response.sendRedirect("http://localhost:3000/login?m=exists");
+                    response.sendRedirect("http://localhost:4200/login?m=exists");
                 }
                 else {
                     this.userService.enableAccount(user);
                 }
                 this.tokenService.deleteByToken(token);
-                response.sendRedirect("http://localhost:3000/login?m=success");
+                response.sendRedirect("http://localhost:4200/login?m=success");
             }
         }
     }
@@ -77,16 +78,14 @@ public class UserController {
                 this.tokenService.deleteByToken(token);
             }
             else {
-                response.sendRedirect("http://localhost:3000/forgot-change-password?token=" + token);
+                response.sendRedirect("http://localhost:4200/forgot-change-password?token=" + token);
             }
         }
     }
 
     @PostMapping("/recovery-password/sendMail")
-    public ResponseEntity<String> sendMailForRecovery(@RequestBody AccountRecoveryHelper accountRecoveryHelper){
-        return this.userService.recoverAccount(accountRecoveryHelper)
-                .map(done -> ResponseEntity.ok().body("Recovery mail is sent."))
-                .orElseGet(() -> ResponseEntity.badRequest().build());
+    public void sendMailForRecovery(@RequestBody AccountRecoveryHelper accountRecoveryHelper){
+        this.userService.recoverAccount(accountRecoveryHelper);
     }
 
     @PostMapping("/recovery-password")
@@ -94,6 +93,11 @@ public class UserController {
         return this.userService.recoveryAccountChangePassword(accountRecoveryChangePasswordHelper)
                 .map(user -> ResponseEntity.ok().body("Password reset."))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
+    }
+
+    @GetMapping("/details")
+    public UserResponseDto userResponseDto(){
+        return this.userService.getUserDetails();
     }
 
 }

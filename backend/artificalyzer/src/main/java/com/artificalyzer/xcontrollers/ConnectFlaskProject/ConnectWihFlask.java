@@ -15,7 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/rest/model/sentence")
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("http://localhost:4200/")
 @AllArgsConstructor
 public class ConnectWihFlask {
     @PostMapping("/translate_sentence")
