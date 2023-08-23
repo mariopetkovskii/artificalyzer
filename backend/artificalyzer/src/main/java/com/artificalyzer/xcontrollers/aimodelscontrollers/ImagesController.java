@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/aimodels/images")
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("http://localhost:4200/")
 @AllArgsConstructor
 public class ImagesController {
 

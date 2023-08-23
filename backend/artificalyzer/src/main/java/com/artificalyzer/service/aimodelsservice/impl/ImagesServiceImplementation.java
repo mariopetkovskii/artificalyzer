@@ -27,9 +27,9 @@ public class ImagesServiceImplementation implements ImagesService {
     public Optional<Images> addImagesModel(ImagesHelper imagesHelper, String authHeader) throws JsonProcessingException {
         Images images = new Images();
         images.setPrompt(imagesHelper.getPrompt());
-        images.setNumberImages(imagesHelper.getN());
+        images.setNumberImages(1);
         images.setSize(imagesHelper.getSize());
-        images.setUrl(AiModelsApiCalls.urlImages(imagesHelper.getPrompt(), images.getNumberImages(), imagesHelper.getSize()));
+        images.setUrl(AiModelsApiCalls.urlImages(imagesHelper.getPrompt(), 1, imagesHelper.getSize()));
         String email = HelperFunction.decodeJwtToGetEmail(authHeader);
         User user = this.userRepository.findByEmail(email);
         this.imagesUserRepository.save(new ImagesUser(user, images));

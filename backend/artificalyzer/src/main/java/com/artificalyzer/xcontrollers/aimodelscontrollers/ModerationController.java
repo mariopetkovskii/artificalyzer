@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/aimodels/moderations")
-@CrossOrigin("http://localhost:3000/")
+@CrossOrigin("http://localhost:4200/")
 @AllArgsConstructor
 public class ModerationController {
     private ModerationService moderationService;

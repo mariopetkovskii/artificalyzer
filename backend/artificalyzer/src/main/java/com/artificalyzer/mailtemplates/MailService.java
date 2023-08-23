@@ -28,7 +28,7 @@ public class MailService {
             message.setFrom(new InternetAddress(sender));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("http://localhost:8081/rest/user/confirm-account?token=").append(token);
+            stringBuilder.append("http://localhost:10101/rest/user/confirm-account?token=").append(token);
             message.setSubject("Account confirmation");
             message.setText(stringBuilder.toString());
             Transport.send(message);
@@ -49,7 +49,7 @@ public class MailService {
             message.setFrom(new InternetAddress(sender));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Click here to recover your account http://localhost:8081/rest/user/recovery-password?token=").append(token);
+            stringBuilder.append("Click here to recover your account http://localhost:10101/rest/user/recovery-password?token=").append(token);
             message.setSubject("Account Recovery");
             message.setText(stringBuilder.toString());
             Transport.send(message);
