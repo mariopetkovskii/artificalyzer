@@ -7,6 +7,9 @@ import {SentenceStatementsComponent} from "./sentence-statements/sentence-statem
 import {ProfilePageComponent} from "./profile-page/profile-page.component";
 import {AboutPageComponent} from "./about-page/about-page.component";
 import {RecoverAccountComponent} from "./recover-account/recover-account.component";
+import {EditsAimodelComponent} from "./edits-aimodel/edits-aimodel.component";
+import {ImageAimodelComponent} from "./image-aimodel/image-aimodel.component";
+import {ModerationScoreAimodelComponent} from "./moderation-score-aimodel/moderation-score-aimodel.component";
 
 const routes: Routes = [
   {  path: 'chat', component: ChatGptComponent },
@@ -17,6 +20,9 @@ const routes: Routes = [
   {  path: 'about', component: AboutPageComponent},
   {  path: 'home', component: AboutPageComponent},
   {  path: 'forgot-change-password', component: RecoverAccountComponent},
+  {  path: 'edits-davinci-aimodel', component: EditsAimodelComponent},
+  {  path: 'images-generating-aimodel', component: ImageAimodelComponent},
+  {  path: 'moderation-score-aimodel', component: ModerationScoreAimodelComponent},
 ];
 
 @NgModule({

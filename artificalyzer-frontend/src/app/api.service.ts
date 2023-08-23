@@ -8,7 +8,7 @@ import {first, map} from 'rxjs';
 })
 export class ApiService {
 
-  endpointUrl: string = 'http://localhost:8081/rest';
+  endpointUrl: string = 'http://localhost:10101/rest';
 
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('AUTH_TOKEN');
@@ -78,6 +78,35 @@ export class ApiService {
     return this.httpClient.post(this.endpointUrl + "/model/sentence/analysis", json, httpOptions)
   }
 
+  instructionModelEditsPost(text: string,
+                            instruction: string){
+
+    let json = {
+      "inputText": text,
+      "instruction": instruction
+    }
+
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+
+    return this.httpClient.post(this.endpointUrl + "/aimodels/edits/post", json, httpOptions)
+  }
+
+  generateImage(prompt: string, size: string){
+
+    let json = {
+      "prompt": prompt,
+      "size": size
+    }
+
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+
+    return this.httpClient.post(this.endpointUrl + "/aimodels/images/generate", json, httpOptions)
+  }
+
   sendRecoveryAccountPassword(email: string){
     let json = {
       "email": email
@@ -95,5 +124,7 @@ export class ApiService {
 
     return this.httpClient.post(this.endpointUrl + "/user/recovery-password", json)
   }
+
+
 
 }

@@ -1,0 +1,34 @@
+<section class="text-center text-lg-start">
+  <div class="d-flex justify-content-center mt-5">
+    <div class="w-50">
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" id="prompt" class="form-control" name="prompt" [(ngModel)]="prompt"/>
+          <label class="form-label" for="prompt">Describe image</label>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-2">
+          <select id="size" class="form-select" name="size" [(ngModel)]="size">
+            <option value="512x512">512x512</option>
+            <option value="1024x1024">1024x1024</option>
+          </select>
+          <label class="form-label" for="size">Choose image size</label>
+        </div>
+        <div class="col-md-10">
+          <button type="submit" class="btn btn-primary" (click)="handleSubmit()">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col d-flex justify-content-center">
+      <div *ngIf="response">
+        <img *ngIf="response" [src]="response.url" [alt]="response.prompt">
+      </div>
+    </div>
+  </div>
+</section>

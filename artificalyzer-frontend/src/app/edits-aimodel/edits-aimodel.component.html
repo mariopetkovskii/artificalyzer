@@ -1,0 +1,33 @@
+<section class="text-center text-lg-start">
+  <div class="d-flex justify-content-center mt-5">
+    <div class="w-50">
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" id="text" class="form-control"
+                 name="text" [(ngModel)]="text"/>
+          <label class="form-label" for="text">Text</label>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" id="instruction" class="form-control"
+                 name="instruction" [(ngModel)]="instruction"/>
+          <label class="form-label" for="instruction">Instruction</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary btn-block"
+                  (click)="handleSubmit()">
+            Submit
+          </button>
+        </div>
+        <div class="d-flex justify-content-center response-container">
+          <div>
+            {{ response.outputText }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

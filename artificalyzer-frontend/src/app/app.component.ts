@@ -77,6 +77,18 @@ export class AppComponent implements OnInit{
     this.router.navigate(['/sentence/statements'])
   }
 
+  navigateToEditsDavinciAiModel(){
+    this.router.navigate(['/edits-davinci-aimodel'])
+  }
+
+  navigateToImageGeneratingAiModel(){
+    this.router.navigate(['/images-generating-aimodel'])
+  }
+
+  navigateToSentimentStatsPie(){
+    this.router.navigate(['/moderation-score-aimodel'])
+  }
+
   navigateToLogin(){
     this.router.navigate(['/login'])
   }

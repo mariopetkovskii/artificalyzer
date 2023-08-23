@@ -11,7 +11,13 @@
         Analyze
       </button>
     </div>
-    <div>
+  </div>
+  <div class="d-flex justify-content-center response-container">
+    <div [ngClass]="{
+      'positive-statement': response.polarity === 'Positive sentiment',
+      'negative-statement': response.polarity === 'Negative sentiment',
+      'neutral-statement': response.polarity === 'Neutral sentiment'
+    }">
       {{ response.polarity }}
     </div>
   </div>
