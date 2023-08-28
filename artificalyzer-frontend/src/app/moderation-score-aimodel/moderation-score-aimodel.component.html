@@ -1,12 +1,25 @@
-<div class="pie-chart-container">
-  <ngx-charts-pie-chart
-    [view]="view"
-    [scheme]="colorScheme"
-    [results]="chartData"
-    [labels]="true"
-    [doughnut]="false"
-    (select)="onSelect($event)"
-  >
+<section class="text-center text-lg-start">
+  <div class="d-flex justify-content-center mt-5">
+    <div class="w-50">
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" id="prompt" class="form-control" name="prompt" [(ngModel)]="prompt" />
+          <label class="form-label" for="prompt">Describe image</label>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-10">
+          <button type="submit" class="btn btn-primary" (click)="handleSubmit()">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<div class="pie-chart-container">
+  <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="chartData" [labels]="true" [doughnut]="false"
+    (select)="onSelect($event)">
   </ngx-charts-pie-chart>
 </div>

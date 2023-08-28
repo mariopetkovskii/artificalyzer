@@ -5,6 +5,7 @@ import com.artificalyzer.models.userroles.helpers.*;
 import com.artificalyzer.records.UserResponseDto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface UserService {
@@ -14,7 +15,7 @@ public interface UserService {
 
     Boolean passwordMatches(User user, String password);
 
-    Optional<User> register(UserHelper userHelper);
+    Optional<Map<String,String>> register(UserHelper userHelper);
 
     Optional<User> changePassword(ChangePasswordHelper changePasswordHelper);
 

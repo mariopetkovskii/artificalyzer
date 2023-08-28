@@ -23,9 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.OffsetDateTime;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -78,7 +76,7 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public Optional<User> register(UserHelper userHelper) {
+    public Optional<Map<String,String>> register(UserHelper userHelper) {
         if(!validateEmail(userHelper.getEmail())){
             throw new MailNotValidException();
         }
@@ -113,7 +111,9 @@ public class UserServiceImplementation implements UserService {
         tokenService.create(token);
 
         MailService.emailConfirmation(userHelper.getEmail(), tokenValue);
-        return Optional.of(newUser);
+        Map<String,String> map = new HashMap();
+        map.put("Message","User is registered successfully. Please check your email to finish registration.");
+        return Optional.of(map);
     }
 
     @Override

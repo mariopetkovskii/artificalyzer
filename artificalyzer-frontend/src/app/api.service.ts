@@ -9,6 +9,9 @@ import {first, map} from 'rxjs';
 export class ApiService {
 
   endpointUrl: string = 'http://localhost:10101/rest';
+  httpOptions = {
+    headers: this.getAuthHeaders()
+  };
 
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('AUTH_TOKEN');
@@ -123,6 +126,14 @@ export class ApiService {
     }
 
     return this.httpClient.post(this.endpointUrl + "/user/recovery-password", json)
+  }
+
+  getModerationScore(input:any){
+    let json={
+      "input":input
+    }
+
+    return this.httpClient.post(this.endpointUrl+"/aimodels/moderations",json,this.httpOptions);
   }
 
 

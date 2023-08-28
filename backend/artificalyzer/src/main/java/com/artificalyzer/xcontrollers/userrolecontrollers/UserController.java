@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/rest/user")
@@ -26,9 +27,9 @@ public class UserController {
     private final TokenService tokenService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody UserHelper userHelper){
+    public ResponseEntity<Map<String,String>> register(@RequestBody UserHelper userHelper){
         return this.userService.register(userHelper)
-                .map(user -> ResponseEntity.ok().body("User is registered successfully. Please check your email to finish registration."))
+                .map(user -> ResponseEntity.ok().body(user))
                 .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 

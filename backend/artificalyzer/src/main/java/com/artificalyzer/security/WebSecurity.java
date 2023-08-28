@@ -39,7 +39,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(
                         LOGIN_URL,"/rest/user/register", "/", "/rest/threatEntry/**", "/rest/chart/**", "/rest/user/confirm-account/**",
-                        "/rest/admin/**", "/rest/user/**", "/rest/notification/**", "/rest/host/**", "/rest/userHost/**", "/rest/model/sentence/analysis"
+                        "/rest/admin/**", "/rest/user/**", "/rest/notification/**", "/rest/host/**", "/rest/userHost/**", "/rest/model/sentence/analysis","/rest/aimodels/moderations"
                 )
                 .permitAll()
                 .anyRequest().authenticated()
