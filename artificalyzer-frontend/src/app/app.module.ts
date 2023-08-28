@@ -28,6 +28,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { ModerationScoreAimodelComponent } from './moderation-score-aimodel/moderation-score-aimodel.component';
 import {PieChartModule} from "@swimlane/ngx-charts";
+import { TranslateSentenceComponent } from './translate-sentence/translate-sentence.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import {PieChartModule} from "@swimlane/ngx-charts";
     EditsAimodelComponent,
     ImageAimodelComponent,
     ModerationScoreAimodelComponent,
+    TranslateSentenceComponent,
   ],
   imports: [
     BrowserModule,

@@ -80,6 +80,9 @@ export class AppComponent implements OnInit{
   navigateToEditsDavinciAiModel(){
     this.router.navigate(['/edits-davinci-aimodel'])
   }
+  navigateToTranslateSentence(){
+    this.router.navigate(['/translate_sentence'])
+  }
 
   navigateToImageGeneratingAiModel(){
     this.router.navigate(['/images-generating-aimodel'])

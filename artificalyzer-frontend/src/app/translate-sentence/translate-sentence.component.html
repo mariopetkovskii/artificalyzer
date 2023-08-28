@@ -1,0 +1,17 @@
+<form (ngSubmit)="submitForm()">
+  <label for="sentence">Sentence:</label>
+  <input type="text" id="sentence" [(ngModel)]="sentence" name="sentence" required>
+
+  <label for="lg">Language:</label>
+  <select id="lg" [(ngModel)]="selectedLanguage" name="lg">
+    <option value="hr">Hrvatski</option>
+    <option value="fr">French</option>
+    <!-- Add more options as needed -->
+  </select>
+
+  <button type="submit">Translate</button>
+</form>
+<br>
+<div *ngIf="response" [ngClass]="{'response': true, 'error-response': isError}">
+  <p style="margin-left: 50px;"> {{ response }}</p>
+</div>

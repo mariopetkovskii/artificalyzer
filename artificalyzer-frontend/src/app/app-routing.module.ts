@@ -10,6 +10,7 @@ import {RecoverAccountComponent} from "./recover-account/recover-account.compone
 import {EditsAimodelComponent} from "./edits-aimodel/edits-aimodel.component";
 import {ImageAimodelComponent} from "./image-aimodel/image-aimodel.component";
 import {ModerationScoreAimodelComponent} from "./moderation-score-aimodel/moderation-score-aimodel.component";
+import {TranslateSentenceComponent} from "./translate-sentence/translate-sentence.component";
 
 const routes: Routes = [
   {  path: 'chat', component: ChatGptComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   {  path: 'edits-davinci-aimodel', component: EditsAimodelComponent},
   {  path: 'images-generating-aimodel', component: ImageAimodelComponent},
   {  path: 'moderation-score-aimodel', component: ModerationScoreAimodelComponent},
+  {  path: 'translate_sentence', component: TranslateSentenceComponent},
 ];
 
 @NgModule({
