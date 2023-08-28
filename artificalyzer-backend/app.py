@@ -1,27 +1,24 @@
 from flask import Flask, request, jsonify
 from textblob import TextBlob
 import json
+from translate import Translator
 
 app = Flask(__name__)
+
+def translate_sentence(sentence, target_lang):
+    translator = Translator(to_lang=target_lang)
+    translated = translator.translate(sentence)
+    return translated
 
 @app.route('/translate_sentences', methods=['POST'])
 def translate_sentences():
     data = request.json
-    print(data)
     lg = data['lg']
     english_sentence = data['sentence']
     print(english_sentence)
     print(lg)
-    from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-    model_name = "Helsinki-NLP/opus-mt-en-"+str(lg)
-    print(model_name)
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
-    input_ids = tokenizer.encode(english_sentence, return_tensors="pt")
-    outputs = model.generate(input_ids=input_ids, max_length=128, num_beams=4, early_stopping=True)
-    decoded_outputs = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    print(decoded_outputs)
-    my_dict = {"translated": decoded_outputs}
+    translated = translate_sentence(english_sentence, lg)
+    my_dict = {"translated": translated}
     my_json = json.dumps(my_dict)
     return my_json
 
