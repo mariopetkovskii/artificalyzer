@@ -1,0 +1,36 @@
+<section class="text-center text-lg-start">
+    <div class="d-flex justify-content-center mt-5">
+        <div class="w-75">
+            <div class="row">
+
+                <h1 class="text-center my-title">MY MODERATION SCORES HISTORY</h1>
+            </div>
+            <div class="row mb-3 mt-5 ">
+                <div nz-row class="table-container custom-scroll">
+                    <div nz-col nzSpan="24" class="inner-table-container">
+                        <nz-table #imageDetailTable [nzData]="myScores" [nzPageSize]="7" class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Pie Chart</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="row-data">
+                                    <td>
+                                        <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme"
+                                            [results]="chartData" [labels]="true" [doughnut]="false"
+                                            (select)="onSelect($event)">
+                                        </ngx-charts-pie-chart>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </nz-table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

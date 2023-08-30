@@ -54,11 +54,7 @@
 <!--</div>-->
 
 <mat-toolbar class="mat-elevation-z8">
-  <button
-    mat-icon-button
-    *ngIf="sidenav.mode === 'over'"
-    (click)="sidenav.toggle()"
-  >
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened"> menu</mat-icon>
     <mat-icon *ngIf="sidenav.opened"> close</mat-icon>
   </button>
@@ -121,8 +117,31 @@
         <mat-icon>translate</mat-icon>
         <span>Translate</span>
       </button>
+      <button mat-button class="menu-button" routerLink="/images-generating-aimodel">
+        <mat-icon>image</mat-icon>
+        <span>Images</span>
+      </button>
     </div>
     <mat-divider></mat-divider>
+
+    
+    <div *ngIf="isUserLoggedIn">
+        <button mat-button class="menu-button" routerLink="/my-edits">
+          <mat-icon>directions</mat-icon>
+          <span>My Edits</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/my-images">
+          <mat-icon>pie_chart</mat-icon>
+          <span>My Images</span>
+        </button>
+        <button mat-button class="menu-button" routerLink="/my-moderation-score">
+          <mat-icon>analytics</mat-icon>
+          <span>My Sentiment</span>
+        </button>
+        
+      <mat-divider></mat-divider>
+    </div>
+
 
     <button mat-button class="menu-button" routerLink="/help">
       <mat-icon>help</mat-icon>

@@ -136,6 +136,27 @@ export class ApiService {
     return this.httpClient.post(this.endpointUrl+"/aimodels/moderations",json,this.httpOptions);
   }
 
+  getMyEdits(pageNo:any){
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+    return this.httpClient.get(this.endpointUrl + "/models/editsuser/get?pageNo="+pageNo, httpOptions);
+  }
+
+  
+  getMyImages(pageNo:any){
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+    return this.httpClient.get(this.endpointUrl + "/models/imagesuser/get", httpOptions);
+  }
+
+  getMyScores(pageNo:any){
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+    return this.httpClient.get(this.endpointUrl + "/models/moderations/get", httpOptions);
+  }
 
 
 }

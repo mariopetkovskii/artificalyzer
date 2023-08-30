@@ -29,6 +29,18 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import { ModerationScoreAimodelComponent } from './moderation-score-aimodel/moderation-score-aimodel.component';
 import {PieChartModule} from "@swimlane/ngx-charts";
 import { TranslateSentenceComponent } from './translate-sentence/translate-sentence.component';
+import { MyEditsComponent } from './my-edits/my-edits.component';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { en_US } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { MyImagesComponent } from './my-images/my-images.component';
+import { MyModerationScoreComponent } from './my-moderation-score/my-moderation-score.component';
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
@@ -46,6 +58,9 @@ import { TranslateSentenceComponent } from './translate-sentence/translate-sente
     ImageAimodelComponent,
     ModerationScoreAimodelComponent,
     TranslateSentenceComponent,
+    MyEditsComponent,
+    MyImagesComponent,
+    MyModerationScoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,9 +79,13 @@ import { TranslateSentenceComponent } from './translate-sentence/translate-sente
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
-    PieChartModule
+    PieChartModule,
+    NzPaginationModule,
+    NzTableModule,
   ],
-  providers: [],
+  providers: [
+    { provide: NZ_I18N, useValue: en_US }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

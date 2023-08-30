@@ -9,6 +9,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,9 @@ public class EditsUserController {
     private final EditsUserService editsUserService;
 
     @GetMapping("/get")
-    public List<EditsUser> getAllEditsUser(@RequestHeader("Authorization") String authorizationHeader){
-        return this.editsUserService.findAllByUser(authorizationHeader);
+    public Page<EditsUser> getAllEditsUser(@RequestHeader("Authorization") String authorizationHeader,@RequestParam(defaultValue = "0") Integer pageNo,
+                                        @RequestParam(defaultValue = "10") Integer pageSize,
+                                        @RequestParam(defaultValue = "id") String sortBy){
+        return this.editsUserService.findAllByUser(authorizationHeader,pageNo,pageSize,sortBy);
     }
 }
