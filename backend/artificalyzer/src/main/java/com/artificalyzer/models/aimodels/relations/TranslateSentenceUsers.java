@@ -1,7 +1,6 @@
 package com.artificalyzer.models.aimodels.relations;
 
-import com.artificalyzer.models.aimodels.edits.Edits;
-import com.artificalyzer.models.aimodels.images.Images;
+import com.artificalyzer.models.aimodels.translate_sentence.TranslateSentence;
 import com.artificalyzer.models.userroles.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -12,8 +11,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "ai_imagesmodel_users", schema = "aimodels")
-public class ImagesUser {
+@Table(name = "translate_sentence_users", schema = "artificalyzer")
+public class TranslateSentenceUsers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,11 +23,11 @@ public class ImagesUser {
     private User user;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ai_images_id")
-    private Images images;
+    @JoinColumn(name = "translate_sentence_id")
+    private TranslateSentence translateSentence;
 
-    public ImagesUser(User user, Images images) {
+    public TranslateSentenceUsers(User user, TranslateSentence translateSentence) {
         this.user = user;
-        this.images = images;
+        this.translateSentence = translateSentence;
     }
 }
