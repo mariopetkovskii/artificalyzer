@@ -7,13 +7,14 @@ import { ApiService } from '../api.service';
   styleUrls: ['./my-moderation-score.component.scss']
 })
 export class MyModerationScoreComponent implements OnInit{
-
-  
   myScores:any;
   view: [number, number] = [700, 400];
 
   colorScheme: any;
   prompt: any;
+  totalItems: any;
+  pageSize: number = 1;
+  currentPage: number = 1;
 
   chartData = [
     {
@@ -36,7 +37,6 @@ export class MyModerationScoreComponent implements OnInit{
 
   chartDataResponse=[];
 
-
   constructor(private apiService: ApiService){
     this.colorScheme = {
       domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA','#FFFFFF','#BBBBBB','#781C70']
@@ -46,13 +46,19 @@ export class MyModerationScoreComponent implements OnInit{
     this.getMyScores()
   }
 
+  handlePageChange(newPageIndex: number) {
+    this.currentPage = newPageIndex;
+    this.getMyScores();
+  }
+
   onSelect(event: any): void {
     console.log(event);
   }
   getMyScores(){
-    this.apiService.getMyScores(0).subscribe({
+    this.apiService.getMyScores(this.pageSize, this.currentPage - 1).subscribe({
       next:((res:any)=>{
-        this.myScores=res[0];
+        this.myScores=res.content[0];
+        this.totalItems = res.totalElements;
 
         this.chartData = [
           { name: 'Hate', value: this.myScores.moderation.hateScore },
@@ -63,7 +69,7 @@ export class MyModerationScoreComponent implements OnInit{
           { name: 'Violence', value: this.myScores.moderation.violenceScore },
           { name: 'Violence (Graphic)', value: this.myScores.moderation.violenceGraphicScore }
         ];
-        
+
       })
     })
   }

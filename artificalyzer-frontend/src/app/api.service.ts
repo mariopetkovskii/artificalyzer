@@ -136,26 +136,26 @@ export class ApiService {
     return this.httpClient.post(this.endpointUrl+"/aimodels/moderations",json,this.httpOptions);
   }
 
-  getMyEdits(pageNo:any){
+  getMyEdits(pageSize: any, pageNumber: any){
     const httpOptions = {
       headers: this.getAuthHeaders()
     };
-    return this.httpClient.get(this.endpointUrl + "/models/editsuser/get?pageNo="+pageNo, httpOptions);
+    return this.httpClient.get(this.endpointUrl + "/models/editsuser/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
   }
 
-  
-  getMyImages(pageNo:any){
+
+  getMyImages(pageSize: any, pageNumber: any){
     const httpOptions = {
       headers: this.getAuthHeaders()
     };
-    return this.httpClient.get(this.endpointUrl + "/models/imagesuser/get", httpOptions);
+    return this.httpClient.get(this.endpointUrl + "/models/imagesuser/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
   }
 
-  getMyScores(pageNo:any){
+  getMyScores(pageSize: any, pageNumber: any){
     const httpOptions = {
       headers: this.getAuthHeaders()
     };
-    return this.httpClient.get(this.endpointUrl + "/models/moderations/get", httpOptions);
+    return this.httpClient.get(this.endpointUrl + "/models/moderations/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
   }
 
 

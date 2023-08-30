@@ -23,9 +23,10 @@ public class EditsUserController {
     private final EditsUserService editsUserService;
 
     @GetMapping("/get")
-    public Page<EditsUser> getAllEditsUser(@RequestHeader("Authorization") String authorizationHeader,@RequestParam(defaultValue = "0") Integer pageNo,
-                                        @RequestParam(defaultValue = "10") Integer pageSize,
-                                        @RequestParam(defaultValue = "id") String sortBy){
-        return this.editsUserService.findAllByUser(authorizationHeader,pageNo,pageSize,sortBy);
+    public Page<EditsUser> getAllEditsUser(@RequestHeader("Authorization") String authorizationHeader,
+                                           @RequestParam(defaultValue = "0") Integer pageNo,
+                                           @RequestParam(defaultValue = "10") Integer pageSize,
+                                           @RequestParam(defaultValue = "id") String sortBy){
+        return this.editsUserService.findAllByUser(authorizationHeader, pageNo, pageSize, sortBy);
     }
 }

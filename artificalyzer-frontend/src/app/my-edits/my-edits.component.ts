@@ -9,6 +9,10 @@ import { ApiService } from '../api.service';
 export class MyEditsComponent implements OnInit{
 
   myEdits:any;
+  totalItems: any;
+  pageSize: number = 10;
+  currentPage: number = 1;
+
 
   constructor(private apiService: ApiService){
 
@@ -17,11 +21,17 @@ export class MyEditsComponent implements OnInit{
     this.getMyEdits()
   }
 
+  handlePageChange(newPageIndex: number) {
+    this.currentPage = newPageIndex;
+    this.getMyEdits();
+  }
+
   getMyEdits(){
-    this.apiService.getMyEdits(0).subscribe({
+    this.apiService.getMyEdits(this.pageSize, this.currentPage-1).subscribe({
       next:((res:any)=>{
         console.log(res);
         this.myEdits=res;
+        this.totalItems = res.totalElements
       })
     })
   }

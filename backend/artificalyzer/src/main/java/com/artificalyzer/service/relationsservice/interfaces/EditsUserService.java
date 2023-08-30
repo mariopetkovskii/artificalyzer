@@ -7,5 +7,5 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 public interface EditsUserService {
-    Page<EditsUser> findAllByUser(String authHeader,Integer pageNo, Integer pageSize, String sortBy);
+    Page<EditsUser> findAllByUser(String authHeader, Integer pageNo, Integer pageSize, String sortBy);
 }

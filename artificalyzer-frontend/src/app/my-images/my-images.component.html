@@ -1,34 +1,74 @@
+<!--<section class="text-center text-lg-start">-->
+<!--    <div class="d-flex justify-content-center mt-5">-->
+<!--        <div class="w-75">-->
+<!--            <div class="row">-->
+
+<!--                <h1 class="text-center my-title">MY IMAGES HISTORY DETAILS</h1>-->
+<!--            </div>-->
+<!--            <div class="row mb-3 mt-5 ">-->
+<!--                <div nz-row class="table-container custom-scroll">-->
+<!--                    <div nz-col nzSpan="24" class="inner-table-container">-->
+<!--                        <nz-table #imageDetailTable [nzData]="myImages" [nzPageSize]="7" class="custom-table">-->
+<!--                          <thead>-->
+<!--                            <tr>-->
+<!--                              <th>Size</th>-->
+<!--                              <th>Image URL</th>-->
+<!--                            </tr>-->
+<!--                          </thead>-->
+<!--                          <tbody>-->
+<!--                            <tr *ngFor="let item of myImages.content" class="row-data">-->
+<!--                              <td class="align-text-center">{{ item.images.size }}</td>-->
+<!--                              <td class="align-text-left">-->
+<!--                                <a [href]="item.images.url" target="_blank">{{ item.images.prompt }}</a>-->
+<!--                              </td>-->
+<!--                            </tr>-->
+<!--                          </tbody>-->
+<!--                        </nz-table>-->
+<!--                      </div>-->
+
+<!--                  </div>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
 <section class="text-center text-lg-start">
-    <div class="d-flex justify-content-center mt-5">
-        <div class="w-75">
-            <div class="row">
-                
-                <h1 class="text-center my-title">MY IMAGES HISTORY DETAILS</h1>
-            </div>
-            <div class="row mb-3 mt-5 ">
-                <div nz-row class="table-container custom-scroll">
-                    <div nz-col nzSpan="24" class="inner-table-container">
-                        <nz-table #imageDetailTable [nzData]="myImages" [nzPageSize]="7" class="custom-table">
-                          <thead>
-                            <tr>
-                              <th>Size</th>
-                              <th>Image URL</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr *ngFor="let item of imageDetailTable.data" class="row-data">
-                              <td class="align-text-center">{{ item.images.size }}</td>
-                              <td class="align-text-left">
-                                <a [href]="item.images.url" target="_blank">{{ item.images.prompt }}</a>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </nz-table>
-                      </div>
-                      
-                  </div>
-                                
-            </div>
+  <div class="d-flex justify-content-center mt-5">
+    <div class="w-75">
+      <div class="row">
+        <h1 class="text-center my-title">MY EDITS HISTORY DETAILS</h1>
+      </div>
+      <div class="row mb-3 mt-5 ">
+        <div nz-row class="table-container custom-scroll">
+          <div nz-col nzSpan="24" class="inner-table-container">
+            <nz-table #imageTable
+                      [nzData]="myImages?.content"
+                      [nzPageSize]="pageSize"
+                      [nzFrontPagination]="false"
+                      [nzPageSizeOptions]="[10, 25, 50, 75, 100]"
+                      [nzTotal]="totalItems"
+                      [nzPageIndex]="currentPage"
+                      (nzPageIndexChange)="handlePageChange($event)">
+<!--                      (nzPageIndexChange)="handlePageChange($event)"-->
+
+              <thead>
+              <tr>
+                <th>Size</th>
+                <th>Image URL</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of imageTable.data" class="row-data">
+                <td class="col-fixed-70-perc align-text-left">{{ item.images.size }}</td>
+                <td class="align-text-left"><a [href]="item.images.url" target="_blank">{{ item.images.prompt }}</a></td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
+

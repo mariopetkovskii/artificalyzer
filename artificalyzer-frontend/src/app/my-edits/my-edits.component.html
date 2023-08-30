@@ -7,24 +7,31 @@
             <div class="row mb-3 mt-5 ">
                 <div nz-row class="table-container custom-scroll">
                     <div nz-col nzSpan="24" class="inner-table-container">
-                      <nz-table #employeesDetailTable [nzData]="myEdits?.content" [nzPageSize]="7">
+                      <nz-table #employeesDetailTable
+                                [nzData]="myEdits?.content"
+                                [nzPageSize]="pageSize"
+                                [nzFrontPagination]="false"
+                                [nzPageSizeOptions]="[10, 25, 50, 75, 100]"
+                                [nzTotal]="totalItems"
+                                [nzPageIndex]="currentPage"
+                                (nzPageIndexChange)="handlePageChange($event)">
                         <thead>
                           <tr>
                             <th>Input</th>
                             <th>Instruction</th>
-                            <th>Output</th> <!-- Adjusted column order -->
+                            <th>Output</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr *ngFor="let item of employeesDetailTable.data" class="row-data">
                             <td class="col-fixed-70-perc align-text-left">{{ item.edits.inputText }}</td>
-                            <td class="align-text-left">{{ item.edits.instruction }}</td> <!-- Moved instruction column here -->
-                            <td class="align-text-left">{{ item.edits.outputText }}</td> <!-- Adjusted column order -->
+                            <td class="align-text-left">{{ item.edits.instruction }}</td>
+                            <td class="align-text-left">{{ item.edits.outputText }}</td>
                           </tr>
                         </tbody>
                       </nz-table>
                     </div>
-                  </div>                
+                  </div>
             </div>
         </div>
     </div>

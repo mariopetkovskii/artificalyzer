@@ -27,6 +27,6 @@ public class EditsUserServiceImplementation implements EditsUserService {
         Pageable paging = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
         String email = HelperFunction.decodeJwtToGetEmail(authHeader);
         User user = this.userRepository.findByEmail(email);
-        return this.editsUserRepository.findAllByUser(paging,user);
+        return this.editsUserRepository.findAllByUser(paging, user);
     }
 }

@@ -8,7 +8,14 @@
             <div class="row mb-3 mt-5 ">
                 <div nz-row class="table-container custom-scroll">
                     <div nz-col nzSpan="24" class="inner-table-container">
-                        <nz-table #imageDetailTable [nzData]="myScores" [nzPageSize]="7" class="custom-table">
+                        <nz-table #imageDetailTable
+                                  [nzData]="myScores?.content"
+                                  [nzPageSize]="pageSize"
+                                  [nzFrontPagination]="false"
+                                  [nzPageSizeOptions]="[10, 25, 50, 75, 100]"
+                                  [nzTotal]="totalItems"
+                                  [nzPageIndex]="currentPage"
+                                  (nzPageIndexChange)="handlePageChange($event)">
                             <thead>
                                 <tr>
                                     <th>Pie Chart</th>
@@ -21,7 +28,6 @@
                                             [results]="chartData" [labels]="true" [doughnut]="false"
                                             (select)="onSelect($event)">
                                         </ngx-charts-pie-chart>
-
                                     </td>
                                 </tr>
                             </tbody>
