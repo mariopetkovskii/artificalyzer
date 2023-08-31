@@ -81,6 +81,20 @@ export class ApiService {
     return this.httpClient.post(this.endpointUrl + "/model/sentence/analysis", json, httpOptions)
   }
 
+  translateSentence(sentence: string, lg: string) {
+    let json = {
+      "sentence": sentence,
+      "lg": lg
+    }
+
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+
+    return this.httpClient.post(this.endpointUrl + "/model/sentence/translate_sentence", json, httpOptions)
+  }
+
+
   instructionModelEditsPost(text: string,
                             instruction: string){
 
