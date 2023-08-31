@@ -164,6 +164,18 @@ export class ApiService {
     };
     return this.httpClient.get(this.endpointUrl + "/models/imagesuser/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
   }
+  getmySentimentAnalysis(pageSize: any, pageNumber: any){
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+    return this.httpClient.get(this.endpointUrl + "/models/all_sentiment_analysis/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
+  }
+  getmyTranslatedSentences(pageSize: any, pageNumber: any){
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+    return this.httpClient.get(this.endpointUrl + "/models/all_translated_sentences/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
+  }
 
   getMyScores(pageSize: any, pageNumber: any){
     const httpOptions = {
