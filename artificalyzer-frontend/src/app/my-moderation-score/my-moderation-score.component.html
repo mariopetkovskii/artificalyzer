@@ -1,42 +1,49 @@
 <section class="text-center text-lg-start">
-    <div class="d-flex justify-content-center mt-5">
-        <div class="w-75">
-            <div class="row">
+  <div class="d-flex justify-content-center mt-5">
+    <div class="w-75">
+      <div class="row">
 
-                <h1 class="text-center my-title">MY MODERATION SCORES HISTORY</h1>
-            </div>
-            <div class="row mb-3 mt-5 ">
-                <div nz-row class="table-container custom-scroll">
-                    <div nz-col nzSpan="24" class="inner-table-container">
-                        <nz-table #imageDetailTable
-                                  [nzData]="myScores?.content"
-                                  [nzPageSize]="pageSize"
-                                  [nzFrontPagination]="false"
-                                  [nzPageSizeOptions]="[10, 25, 50, 75, 100]"
-                                  [nzTotal]="totalItems"
-                                  [nzPageIndex]="currentPage"
-                                  (nzPageIndexChange)="handlePageChange($event)">
-                            <thead>
-                                <tr>
-                                    <th>Pie Chart</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="row-data">
-                                    <td>
-                                        <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme"
-                                            [results]="chartData" [labels]="true" [doughnut]="false"
-                                            (select)="onSelect($event)">
-                                        </ngx-charts-pie-chart>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </nz-table>
-                    </div>
+        <h1 class="text-center my-title">MY MODERATION SCORES HISTORY</h1>
+      </div>
+      <div class="row mb-3 mt-5 ">
+        <div nz-row class="table-container custom-scroll">
+          <div nz-col  class="inner-table-container">
+            <nz-table #imageDetailTable
+                      [nzData]="myScores"
+                      [nzPageSize]="pageSize"
+                      [nzFrontPagination]="false"
+                      [nzPageSizeOptions]="[10, 25, 50, 75, 100]"
+                      [nzTotal]="totalItems"
+                      [nzPageIndex]="currentPage"
+                      (nzPageIndexChange)="handlePageChange($event)">
+              <thead>
+              <tr>
+                <th>{{ prompt }}</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="row-data">
+                <td>
+                  <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme"
+                                        [results]="chartData" [labels]="true" [doughnut]="false"
+                                        (select)="onSelect($event)">
+                  </ngx-charts-pie-chart>
+                </td>
+              </tr>
+              </tbody>
+            </nz-table>
+            <nz-pagination
+              [nzTotal]="totalItems"
+              [nzPageIndex]="currentPage"
+              [nzPageSize]="pageSize"
+              (nzPageIndexChange)="handlePageChange($event)"
+              [nzPageSizeOptions]="[10, 25, 50, 75, 100]"
+            ></nz-pagination>
+          </div>
 
-                </div>
-
-            </div>
         </div>
+
+      </div>
     </div>
+  </div>
 </section>

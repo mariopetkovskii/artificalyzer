@@ -59,6 +59,8 @@ export class MyModerationScoreComponent implements OnInit{
       next:((res:any)=>{
         this.myScores=res.content[0];
         this.totalItems = res.totalElements;
+        this.prompt = this.myScores.moderation.inputText
+        console.log(res)
 
         this.chartData = [
           { name: 'Hate', value: this.myScores.moderation.hateScore },
