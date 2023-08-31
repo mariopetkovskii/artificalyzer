@@ -81,6 +81,20 @@ export class ApiService {
     return this.httpClient.post(this.endpointUrl + "/model/sentence/analysis", json, httpOptions)
   }
 
+  translateSentence(sentence: string, lg: string) {
+    let json = {
+      "sentence": sentence,
+      "lg": lg
+    }
+
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+
+    return this.httpClient.post(this.endpointUrl + "/model/sentence/translate_sentence", json, httpOptions)
+  }
+
+
   instructionModelEditsPost(text: string,
                             instruction: string){
 
@@ -149,6 +163,18 @@ export class ApiService {
       headers: this.getAuthHeaders()
     };
     return this.httpClient.get(this.endpointUrl + "/models/imagesuser/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
+  }
+  getmySentimentAnalysis(pageSize: any, pageNumber: any){
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+    return this.httpClient.get(this.endpointUrl + "/models/all_sentiment_analysis/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
+  }
+  getmyTranslatedSentences(pageSize: any, pageNumber: any){
+    const httpOptions = {
+      headers: this.getAuthHeaders()
+    };
+    return this.httpClient.get(this.endpointUrl + "/models/all_translated_sentences/get?pageNo=" + pageNumber + "&pageSize=" + pageSize, httpOptions);
   }
 
   getMyScores(pageSize: any, pageNumber: any){

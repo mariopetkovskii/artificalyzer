@@ -14,6 +14,8 @@ import { TranslateSentenceComponent } from "./translate-sentence/translate-sente
 import { MyEditsComponent } from './my-edits/my-edits.component';
 import { MyImagesComponent } from './my-images/my-images.component';
 import { MyModerationScoreComponent } from './my-moderation-score/my-moderation-score.component';
+import { MySentimentAnalysisComponent } from './my-sentiment-analysis/my-sentiment-analysis.component';
+import {MytranslateSentencesComponent} from './mytranslate-sentences/mytranslate-sentences.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,8 @@ const routes: Routes = [
   { path: 'my-edits', component: MyEditsComponent },
   { path: 'my-images', component: MyImagesComponent },
   { path: 'my-moderation-score', component: MyModerationScoreComponent },
+  { path: 'my-sentiment-analysis', component: MySentimentAnalysisComponent },
+  { path: 'my-translated-sentences', component: MytranslateSentencesComponent },
 ];
 
 @NgModule({

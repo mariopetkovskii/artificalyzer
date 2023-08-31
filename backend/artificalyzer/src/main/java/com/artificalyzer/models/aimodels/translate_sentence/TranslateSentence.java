@@ -19,6 +19,6 @@ public class TranslateSentence {
 
     private String input_sentance;
     @Column(name="lg")
-    private int lg;
+    private String lg;
     private String translated_sentece;
 }

@@ -39,6 +39,8 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { MyImagesComponent } from './my-images/my-images.component';
 import { MyModerationScoreComponent } from './my-moderation-score/my-moderation-score.component';
+import { MytranslateSentencesComponent } from './mytranslate-sentences/mytranslate-sentences.component';
+import { MySentimentAnalysisComponent } from './my-sentiment-analysis/my-sentiment-analysis.component';
 
 registerLocaleData(en);
 
@@ -61,6 +63,8 @@ registerLocaleData(en);
     MyEditsComponent,
     MyImagesComponent,
     MyModerationScoreComponent,
+    MytranslateSentencesComponent,
+    MySentimentAnalysisComponent,
   ],
   imports: [
     BrowserModule,
